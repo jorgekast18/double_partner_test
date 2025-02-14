@@ -17,7 +17,7 @@ class _LoginViewState extends State<LoginView> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Login for Double partner V - Test')),
+      appBar: AppBar(title: const Text('Double partner V - Test')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: BlocProvider(
