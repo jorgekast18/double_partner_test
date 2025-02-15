@@ -105,6 +105,8 @@ class FirebaseAuthDatasource {
         return 'Operación no permitida.';
       case 'weak-password':
         return 'La contraseña es muy débil.';
+      case 'invalid-credential':
+        return 'Credenciales incorrectas';
       default:
         return 'Ha ocurrido un error.';
     }
