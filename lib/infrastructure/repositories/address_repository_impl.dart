@@ -27,9 +27,9 @@ class AddressRepositoryImpl implements IAddressRepository {
   }
 
   @override
-  Future<Either<Failure, List<Address>>> getAll() async {
+  Future<Either<Failure, List<Address>>> getAll(String userId) async {
     try {
-      final userData = await _addressDatasource.getAllAddresses();
+      final userData = await _addressDatasource.getAllAddresses(userId);
       return Right(userData);
     } on AuthException catch (e) {
       return Left(AuthFailure(e.message));

@@ -5,5 +5,5 @@ import '../../core/errors/failures.dart';
 
 abstract class IAddressRepository {
   Future<Either<Failure, Address>> create(Address address, String userId);
-  Future<Either<Failure, List<Address>>> getAll();
+  Future<Either<Failure, List<Address>>> getAll(String userId);
 }

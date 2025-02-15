@@ -42,7 +42,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => IsAuth(sl()));
   sl.registerLazySingleton(() => GetCurrentUser(sl()));
   sl.registerLazySingleton(() => CreateAddress(sl(), sl(), sl()));
-  sl.registerLazySingleton(() => GetAllAddresses(sl(), sl()));
+  sl.registerLazySingleton(() => GetAllAddresses(sl(), sl(), sl()));
 
   // Repositories
   sl.registerLazySingleton<IAuthRepository>(

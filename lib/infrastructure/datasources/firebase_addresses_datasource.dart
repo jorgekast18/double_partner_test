@@ -28,11 +28,14 @@ class FirebaseAddressDatasource {
     }
   }
 
-  Future<List<Address>> getAllAddresses() async {
+  Future<List<Address>> getAllAddresses(String userId) async {
     try {
+
+      print('user id --> $userId');
 
       final querySnapshot = await _firestore
           .collection('addresses')
+          .where('userId', isEqualTo: userId)
           .get();
 
       if (querySnapshot.docs.isEmpty) {
