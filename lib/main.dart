@@ -1,4 +1,5 @@
 import 'package:double_partner_test/presentation/blocs/auth/auth_bloc.dart';
+import 'package:double_partner_test/presentation/pages/home_view.dart';
 import 'package:double_partner_test/presentation/pages/register_view.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => LoginPage(),
-          '/register': (context) => RegisterView()
+          '/register': (context) => RegisterView(),
+          '/home': (context) => HomePage()
         },
       )
       );
