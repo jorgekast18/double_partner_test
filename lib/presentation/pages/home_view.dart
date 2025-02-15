@@ -27,6 +27,8 @@ class HomePage extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.message)),
             );
+          } else if(state is Unauthenticated) {
+            Navigator.of(context).pushReplacementNamed('/');
           }
         },
         builder: (context, state) {
@@ -52,10 +54,8 @@ class HomePage extends StatelessWidget {
               ),
             );
           } else if (state is AuthLoading) {
-            // Mientras se esté cargando el estado de autenticación
             return const Center(child: CircularProgressIndicator());
           } else if (state is AuthError) {
-            // Si hay un error
             return Center(
               child: Text(
                 state.message,
@@ -63,7 +63,7 @@ class HomePage extends StatelessWidget {
               ),
             );
           } else {
-            // Si no está autenticado (en caso de que no haya estado 'Authenticated')
+
             return const Center(
               child: Text('Por favor inicia sesión'),
             );

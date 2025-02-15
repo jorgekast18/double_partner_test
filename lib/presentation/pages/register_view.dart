@@ -1,3 +1,4 @@
+import 'package:double_partner_test/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -5,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../blocs/auth/auth_bloc.dart';
 import '../blocs/auth/auth_event.dart';
 import '../blocs/auth/auth_state.dart';
+import '../utils/fields_validations.dart';
 
 
 class RegisterView extends StatefulWidget {
@@ -18,6 +20,7 @@ class _RegisterViewState extends State<RegisterView> {
   final _lastNameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  bool _isPasswordVisible = false;
   DateTime? _selectedDate;
 
   @override
@@ -94,40 +97,32 @@ class _RegisterViewState extends State<RegisterView> {
                     ),
                   ),
                   SizedBox(height: 16),
-                  TextFormField(
+                  CustomTextField(
                     controller: _emailController,
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      border: OutlineInputBorder(),
-                    ),
-                    validator: (value) {
-                      if (value?.isEmpty ?? true) {
-                        return 'Por favor ingrese su email';
-                      }
-                      if (!RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
-                          .hasMatch(value!)) {
-                        return 'Por favor ingrese un email válido';
-                      }
-                      return null;
-                    },
+                    label: 'Email',
+                    hint: 'Ingresa tu email',
+                    keyboardType: TextInputType.emailAddress,
+                    validator: validateEmail,
                   ),
                   SizedBox(height: 16),
-                  TextFormField(
+                  CustomTextField(
                     controller: _passwordController,
-                    decoration: InputDecoration(
-                      labelText: 'Contraseña',
-                      border: OutlineInputBorder(),
+                    label: 'Contraseña',
+                    hint: 'Ingresa tu contraseña',
+                    obscureText: !_isPasswordVisible,
+                    suffixIcon: IconButton(
+                      icon: Icon(
+                        _isPasswordVisible
+                            ? Icons.visibility_off
+                            : Icons.visibility,
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
                     ),
-                    obscureText: true,
-                    validator: (value) {
-                      if (value?.isEmpty ?? true) {
-                        return 'Por favor ingrese su contraseña';
-                      }
-                      if (value!.length < 6) {
-                        return 'La contraseña debe tener al menos 6 caracteres';
-                      }
-                      return null;
-                    },
+                    validator: validatePassword,
                   ),
                   SizedBox(height: 24),
                   ElevatedButton(

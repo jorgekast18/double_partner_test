@@ -1,26 +1,30 @@
 import 'dart:async';
-import 'package:double_partner_test/domain/repositories/i_auth_repository.dart';
+import 'package:double_partner_test/infrastructure/repositories/auth_repository_impl.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../domain/entities/user.dart';
-import '../../../domain/usecases/sign_in.dart';
-import '../../../domain/usecases/register_user.dart';
+import 'package:double_partner_test/domain/entities/user.dart';
+import 'package:double_partner_test/domain/usecases/sign_out.dart';
+import 'package:double_partner_test/domain/usecases/sign_in.dart';
+import 'package:double_partner_test/domain/usecases/register_user.dart';
 import 'auth_event.dart';
 import 'auth_state.dart';
 
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignIn _signIn;
   final RegisterUser _registerUser;
-
+  final SignOut _signOut;
   StreamSubscription<User?>? _authStateSubscription;
 
   AuthBloc({
     required SignIn signIn,
     required RegisterUser registerUser,
+    required SignOut signOut
   })  : _signIn = signIn,
         _registerUser = registerUser,
+        _signOut = signOut,
         super(AuthInitial()) {
     on<SignInRequested>(_onSignInRequested);
     on<RegisterRequested>(_onRegisterRequested);
+    on<SignOutRequested>(_onSignOutRequested);
 
   }
 
@@ -70,19 +74,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     );
   }
 
-  // Future<void> _onSignOutRequested(
-  //     SignOutRequested event,
-  //     Emitter<AuthState> emit,
-  //     ) async {
-  //   emit(AuthLoading());
-  //
-  //   final result = await _authRepository.signOut();
-  //
-  //   result.fold(
-  //         (failure) => emit(AuthError(failure.message)),
-  //         (_) => emit(Unauthenticated()),
-  //   );
-  // }
+  Future<void> _onSignOutRequested(
+      SignOutRequested event,
+      Emitter<AuthState> emit,
+      ) async {
+    emit(AuthLoading());
+
+    final result = await _signOut();
+
+    result.fold(
+          (failure) => emit(AuthError(failure.message)),
+          (_) => emit(Unauthenticated()),
+    );
+  }
 
   @override
   Future<void> close() {

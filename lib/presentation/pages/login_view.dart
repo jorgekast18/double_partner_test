@@ -4,6 +4,7 @@ import '../blocs/auth/auth_bloc.dart';
 import '../blocs/auth/auth_event.dart';
 import '../blocs/auth/auth_state.dart';
 import '../widgets/custom_text_field.dart';
+import '../utils/fields_validations.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -25,26 +26,7 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  String? _validateEmail(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'El email es requerido';
-    }
-    final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    if (!emailRegex.hasMatch(value)) {
-      return 'Ingresa un email válido';
-    }
-    return null;
-  }
 
-  String? _validatePassword(String? value) {
-    if (value == null || value.isEmpty) {
-      return 'La contraseña es requerida';
-    }
-    if (value.length < 6) {
-      return 'La contraseña debe tener al menos 6 caracteres';
-    }
-    return null;
-  }
 
   void _onLoginPressed() {
     if (_formKey.currentState?.validate() ?? false) {
@@ -101,7 +83,7 @@ class _LoginPageState extends State<LoginPage> {
                             hint: 'Ingresa tu email',
                             keyboardType: TextInputType.emailAddress,
                             prefixIcon: const Icon(Icons.email_outlined),
-                            validator: _validateEmail,
+                            validator: validateEmail,
                           ),
                           const SizedBox(height: 16),
                           CustomTextField(
@@ -122,7 +104,7 @@ class _LoginPageState extends State<LoginPage> {
                                 });
                               },
                             ),
-                            validator: _validatePassword,
+                            validator: validatePassword,
                           ),
                           const SizedBox(height: 24),
                           SizedBox(
