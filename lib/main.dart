@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => di.sl<AuthBloc>())
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Double partner Test',
         initialRoute: '/',
         routes: {
