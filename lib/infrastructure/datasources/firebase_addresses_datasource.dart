@@ -9,15 +9,20 @@ class FirebaseAddressDatasource {
     FirebaseFirestore? firestore,
   })  : _firestore = firestore ?? FirebaseFirestore.instance;
 
-  Future<void> createAddress(Address address, String userId) async {
+  Future<Map<String, dynamic>> createAddress(Map<String, dynamic> address, String userId) async {
     try {
       await _firestore.collection('addresses').add({
-        'userId': address.userId,
-        'street': address.street,
-        'city': address.city,
-        'state': address.state,
+        'userId': address['userId'],
+        'street': address['street'],
+        'city': address['city'],
+        'state': address['state'],
         'createdAt': FieldValue.serverTimestamp(),
       });
+
+      return {
+        ...address,
+        'message': 'Dirección creada.'
+      };
     } catch (e) {
       throw ServerException(e.toString());
     }
