@@ -1,16 +1,44 @@
-# double_partner_test
+# Double Partner V - Test
 
-Project for double partner test
+This project is for a Double Partner V Company test.
 
-## Getting Started
+## Proposed architecture
+
+lib/
+├── core/
+│   ├── errors/
+│   ├── injection/
+│   └── usecases/
+├── domain/
+│   ├── entities/
+│   ├── repositories/
+│   └── usecases/
+├── infrastructure/
+│   ├── datasources/
+│   ├── models/
+│   └── repositories/
+└── presentation/
+├── blocs/
+├── pages/
+└── widgets/
+
+This project connects to a firebase authentication and firestore for managing users and addresses.
+The project incorporates a hexagonal architecture, separating the domain from the infrastructure in 
+such a way that it becomes scalable. For example, an authentication method other than firebase could 
+be used without any problem, being added in the infrastructure (adapters) and consumed in the domain 
+(ports).
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+## Requirements:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Flutter version 3.24.3
+- Ruby version 3.4.1
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Run App:
+
+1. Clone the project
+2. Navigate to the project and install the pubs with the command ´´´flutter pub get´´´ 
+3. Navigate to ios folder and run the command ´´´pod install´´´
+4. In the project index, run ´´´flutter run´´´
+5. Enjoy the project.
