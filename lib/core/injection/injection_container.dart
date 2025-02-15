@@ -6,6 +6,7 @@ import 'package:double_partner_test/domain/usecases/get_current_user.dart';
 import 'package:double_partner_test/domain/usecases/sign_out.dart';
 import 'package:double_partner_test/infrastructure/datasources/firebase_addresses_datasource.dart';
 import 'package:double_partner_test/infrastructure/repositories/address_repository_impl.dart';
+import 'package:double_partner_test/presentation/blocs/addresses/address_bloc.dart';
 import 'package:get_it/get_it.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -25,6 +26,12 @@ Future<void> init() async {
       signIn: sl(),
       registerUser: sl(),
       signOut: sl(),
+    ),
+  );
+  sl.registerFactory(
+        () => AddressBloc(
+      createAddress: sl(),
+      getAllAddress: sl()
     ),
   );
 
