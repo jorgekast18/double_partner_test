@@ -4,6 +4,7 @@ This project is for a Double Partner V Company test.
 
 ## Proposed architecture
 
+```
 lib/
 ├── core/
 │   ├── errors/
@@ -21,7 +22,7 @@ lib/
 ├── blocs/
 ├── pages/
 └── widgets/
-
+```
 
 This project connects to a firebase authentication and firestore for managing users and addresses.
 The project incorporates a hexagonal architecture, separating the domain from the infrastructure in 
@@ -39,13 +40,13 @@ This project is a starting point for a Flutter application.
 ## Run App:
 
 1. Clone the project
-2. Navigate to the project and install the pubs with the command ´´´flutter pub get´´´ 
-3. Navigate to ios folder and run the command ´´´pod install´´´
-4. In the project index, run ´´´flutter run´´´
+2. Navigate to the project and install the pubs with the command ```flutter pub get```
+3. Navigate to ios folder and run the command ```pod install```
+4. In the project index, run ```flutter run```
 5. Enjoy the project.
 
-![Home](https://i.postimg.cc/CMXKPfPy/temp-Image2-Hck-Go.avif)
-![Home](https://i.postimg.cc/br7NsKDY/temp-Imagec-C57-BP.avif)
+![Login](https://i.postimg.cc/4d33MvRG/temp-Image-Zd-Muke.avif)
+![Register](https://i.postimg.cc/br7NsKDY/temp-Imagec-C57-BP.avif)
 ![Home](https://i.postimg.cc/XJDv0ZnC/temp-Imagep9-N89a.avif)
+![Home](https://i.postimg.cc/CMXKPfPy/temp-Image2-Hck-Go.avif)
 ![Home](https://i.postimg.cc/J0Dz71hd/temp-Image-UIgze7.avif)
-![Home](https://i.postimg.cc/4d33MvRG/temp-Image-Zd-Muke.avif)
