@@ -13,6 +13,12 @@ class Address {
     required this.state,
   });
 
+  Address.create({
+    required this.street,
+    required this.city,
+    required this.state,
+  })  : id = '',
+        userId = '';
   @override
   List<Object> get props  => [id, userId, street, city, state];
 }
