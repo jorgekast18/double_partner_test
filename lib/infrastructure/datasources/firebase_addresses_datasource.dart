@@ -12,7 +12,7 @@ class FirebaseAddressDatasource {
   Future<Map<String, dynamic>> createAddress(Map<String, dynamic> address, String userId) async {
     try {
       await _firestore.collection('addresses').add({
-        'userId': address['userId'],
+        'userId': userId,
         'street': address['street'],
         'city': address['city'],
         'state': address['state'],
@@ -30,9 +30,6 @@ class FirebaseAddressDatasource {
 
   Future<List<Address>> getAllAddresses(String userId) async {
     try {
-
-      print('user id --> $userId');
-
       final querySnapshot = await _firestore
           .collection('addresses')
           .where('userId', isEqualTo: userId)
