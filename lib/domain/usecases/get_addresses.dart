@@ -21,7 +21,14 @@ class GetAllAddresses implements NoParamsUseCase<List<Address>> {
           }, (isAuthenticated) async {
         if(isAuthenticated){
           final result = await repository.getAll();
-          return Right(result as List<Address>);
+          return result.fold(
+              (failure) {
+                return Left(failure);
+              },
+              (addresses) {
+                return Right(addresses);
+              }
+          );
         } else {
           return const Left(AuthFailure('El usuario no está autenticado'));
         }
